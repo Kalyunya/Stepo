@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Кнопки Назад і Опції -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:weightSum="3">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/ic_arrow_back"
+                android:scaleType="centerInside"
+                android:contentDescription="Back"
+                />
+
+            <TextView
+                android:id="@+id/tvEditProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Edit profile"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <ImageButton
+                android:id="@+id/btnMore"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/ic_more"
+                android:scaleType="centerInside"
+                android:contentDescription="More" />
+        </LinearLayout>
+
+        <!-- Аватар -->
+        <FrameLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="8dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_avatar"
+                android:contentDescription="Avatar"
+                android:layout_gravity="center"
+                app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+            <ImageButton
+                android:id="@+id/btnChangeAvatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="4dp"
+                android:background="@drawable/circle_white"
+                android:src="@drawable/ic_edit"
+                android:contentDescription="Change Avatar" />
+        </FrameLayout>
+
+        <!-- Ім’я -->
+        <TextView
+            android:id="@+id/tvProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inna Kopenkina"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Full name -->
+        <EditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full name"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Date of Birth -->
+        <EditText
+            android:id="@+id/etDob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of Birth"
+            android:focusable="false"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Height -->
+        <EditText
+            android:id="@+id/etHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your Height"
+            android:inputType="number"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Weight -->
+        <EditText
+            android:id="@+id/etWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your weight"
+            android:inputType="number"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Save button -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:background="@drawable/rounded_button_black"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</ScrollView>

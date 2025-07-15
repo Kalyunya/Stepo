@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Frame18Activity">
+
+    <!-- Фон / карта -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="Map preview"
+            android:src="@android:drawable/ic_menu_mapmode" />
+
+        <!-- Кнопка 3D -->
+        <Button
+            android:id="@+id/btn3D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3D"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp" />
+    </FrameLayout>
+
+    <!-- Висувна панель -->
+    <LinearLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:padding="16dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <!-- Ручка -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/tvActivityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Indoor Run"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvKcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 883 Kcal"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Графік (плейсхолдер) -->
+        <ImageView
+            android:id="@+id/imageGraph"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@android:drawable/ic_menu_info_details"
+            android:contentDescription="Graph"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Параметри -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚡ 246 Energy"
+                android:layout_marginEnd="16dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔥 682 Flame"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Наступна активність -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next Round"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Outdoor Cycle (24 min)"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

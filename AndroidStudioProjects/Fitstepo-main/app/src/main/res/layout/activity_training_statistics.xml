@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root"
+    android:background="@android:color/white"
+    tools:context=".TrainingStatisticsActivity">
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="42dp"
+        android:src="@drawable/profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/helloText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Hello Inna!"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/profileImage"
+        app:layout_constraintTop_toTopOf="@id/profileImage" />
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Friday, 4 July"
+        android:textColor="#777"
+        android:textSize="19sp"
+        app:layout_constraintStart_toStartOf="@id/helloText"
+        app:layout_constraintTop_toBottomOf="@id/helloText" />
+
+    <ImageView
+        android:id="@+id/calendarButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_button"
+        android:src="@drawable/ic_calendar"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="@id/profileImage"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/caloriesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="1 883 Kcal"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        app:layout_constraintTop_toBottomOf="@id/profileImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/totalCaloriesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Kilocalories"
+        android:textColor="#888"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/caloriesText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/Total"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/totalCaloriesText">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7580 M"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distance"
+                android:textColor="#888"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:text="235"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Steps"
+                android:textColor="#888"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:text="1248"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Points"
+                android:textColor="#888"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/A"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:gravity="top"
+        app:layout_constraintTop_toBottomOf="@id/Total">
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="146dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/progress_background"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_max"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_gravity="bottom|center"
+                android:id="@+id/progress_fill"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_black_current"
+                android:scaleType="fitXY" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="146dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/progress_background1"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_max"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/progress_fill1"
+                android:layout_gravity="bottom|center"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_current"
+                android:scaleType="fitXY" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="146dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/progress_background2"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_max"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/progress_fill2"
+                android:layout_gravity="bottom|center"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_black_current"
+                android:scaleType="fitXY" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="146dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/progress_background3"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_max"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/progress_fill3"
+                android:layout_gravity="bottom|center"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_current"
+                android:scaleType="fitXY" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="146dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/progress_background4"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_max"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/progress_fill4"
+                android:layout_gravity="bottom|center"
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:src="@drawable/ic_black_current"
+                android:scaleType="fitXY" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="146dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/progress_background5"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_max"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/progress_fill5"
+                android:layout_gravity="bottom|center"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_current"
+                android:scaleType="fitXY" />
+        </FrameLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/exercisesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/A"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_dumbbell" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="628 Kcal"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dumbbell"
+                android:textColor="#888"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_treadmill" />
+            <TextView
+                android:text="235"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Treadmill"
+                android:textColor="#888"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_rope" />
+            <TextView
+                android:text="432"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Rope"
+                android:textColor="#888"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/myPlanText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Plan"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/exercisesLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/planDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="July, 2021"
+        android:textSize="14sp"
+        android:textColor="#777"
+        app:layout_constraintTop_toBottomOf="@id/myPlanText"
+        app:layout_constraintStart_toStartOf="@id/myPlanText"/>
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="410dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:backgroundTint="@android:color/white"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

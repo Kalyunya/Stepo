@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Прозорий фон — зайвий, якщо буде в кнопці -->
+    <!-- Лінія 1 -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M6,8h12v1.5H6z" />
+
+    <!-- Лінія 2 -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M6,11h12v1.5H6z" />
+
+    <!-- Лінія 3 -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M6,14h12v1.5H6z" />
+</vector>

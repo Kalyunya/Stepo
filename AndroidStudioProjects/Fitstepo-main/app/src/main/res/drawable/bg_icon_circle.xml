@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Тінь -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#33000000" /> <!-- напівпрозора чорна тінь -->
+        </shape>
+    </item>
+
+    <!-- Основне коло -->
+    <item android:left="2dp" android:top="2dp">
+        <shape android:shape="oval">
+            <solid android:color="#EEF2FA" />
+        </shape>
+    </item>
+
+</layer-list>

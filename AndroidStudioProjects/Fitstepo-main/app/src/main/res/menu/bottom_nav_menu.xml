@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title=" "/>
+    <item
+        android:id="@+id/nav_heart"
+        android:icon="@drawable/ic_heart"
+        android:title=" "/>
+    <item
+        android:id="@+id/nav_play"
+        android:icon="@drawable/ic_play"
+        android:title=" "/>
+    <item
+        android:id="@+id/nav_stats"
+        android:icon="@drawable/ic_stats"
+        android:title=" "/>
+    <item
+        android:id="@+id/nav_medal"
+        android:icon="@drawable/medal_black"
+        android:title=" "/>
+</menu>

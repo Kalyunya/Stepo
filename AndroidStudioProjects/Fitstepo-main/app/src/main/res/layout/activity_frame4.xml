@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do you already have a fitness routine?"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Відповідь "Yes" -->
+    <LinearLayout
+        android:id="@+id/optionYes"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal"
+        android:background="@drawable/radio_button_selector"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:text="Yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:id="@+id/checkYes"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_check_mark"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Відповідь "No" -->
+    <LinearLayout
+        android:id="@+id/optionNo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:background="@drawable/radio_button_selector"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:text="No"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:id="@+id/checkNo"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_check_mark"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Роздільник -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Кнопки переходу -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Back" />
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Next" />
+    </LinearLayout>
+</LinearLayout>

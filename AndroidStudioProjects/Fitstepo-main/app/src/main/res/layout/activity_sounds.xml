@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/soundsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="24dp">
+
+    <!-- Верхня панель з кнопками Назад, Sounds і Плейлист -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- Кнопка Назад у колі -->
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_circle_light"
+            android:layout_gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Назад"
+                android:scaleType="centerInside"
+                android:padding="12dp" />
+        </FrameLayout>
+
+        <!-- Центрований заголовок -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sounds"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#000000" />
+
+        <!-- Кнопка Плейлист у колі -->
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_circle_light"
+            android:layout_gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/btnPlaylist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_playlist"
+                android:contentDescription="Плейлист"
+                android:enabled="false"
+                android:scaleType="centerInside"
+                android:padding="12dp" />
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <!-- Назва пісні -->
+    <TextView
+        android:id="@+id/tvSongTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Song Title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+    <!-- Ім'я виконавця -->
+    <TextView
+        android:id="@+id/tvArtistName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artist Name"
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Прогрес -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvCurrentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0:00"
+            android:textSize="12sp"
+            android:layout_marginEnd="8dp" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:progress="0" />
+
+        <TextView
+            android:id="@+id/tvTotalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3:15"
+            android:textSize="12sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Кнопки керування -->
+    <LinearLayout
+        android:id="@+id/controlButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
+        android:weightSum="5">
+
+        <ImageButton
+            android:id="@+id/btnShuffle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_shuffle"
+            android:contentDescription="Shuffle" />
+
+        <ImageButton
+            android:id="@+id/btnPrevious"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_prev"
+            android:contentDescription="Previous" />
+
+        <ImageButton
+            android:id="@+id/btnPlayPause"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_play"
+            android:contentDescription="Play" />
+
+        <ImageButton
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_next"
+            android:contentDescription="Next" />
+
+        <ImageButton
+            android:id="@+id/btnRepeat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_repeat"
+            android:contentDescription="Repeat" />
+    </LinearLayout>
+    <!-- Плейлист -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/playlistRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:overScrollMode="never"
+        android:clipToPadding="false" />
+
+</LinearLayout>
