@@ -1,0 +1,7 @@
+<!-- res/drawable/time_picker_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFF" />
+    <stroke android:width="2dp" android:color="#0066FF" />
+    <corners android:radius="12dp" />
+</shape>

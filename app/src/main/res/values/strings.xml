@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">fitstepo</string>
+    <string name="hello_world">Hello, world!</string>
+    <string name="how_old_are_you">How old are you?</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+
+    <string name="age_26">26</string>
+    <string name="age_27">27</string>
+    <string name="age_28">28</string>
+    <string name="age_29">29</string>
+    <string name="age_30">30</string>
+
+
+
+    <string name="desc_map">Map preview</string>
+    <string name="indoor_run">Indoor Run</string>
+    <string name="distance">Distance: 12.5km / 20km</string>
+    <string name="elapsed_time">Elapsed time: 00:30:24</string>
+
+    <string name="desc_graph">Calories graph</string>
+    <string name="next_round">Next Round</string>
+
+
+    <string name="name_inna">Inna Kopenkina</string>
+    <string name="total_calories">Total calories</string>
+    <string name="followers">Followers</string>
+    <string name="edit_profile">Edit Profile</string>
+
+        <!-- Тексти для WeightPicker -->
+    <string name="weight_question">What is your weight?</string>
+    <string name="kg">KG</string>
+    <string name="lb">LB</string>
+    <string name="what_is_your_weight">What is your weight?</string>
+
+
+
+    <string name="reward_star">7-Workout Week</string>
+    <string name="reward_goal">Move Goal 200%</string>
+    <string name="reward_record">New Move Record</string>
+    <string name="reward_streak">Longest Move Streak</string>
+
+    <string name="timeline">Timeline</string>
+    <string name="stats">Stats</string>
+    <string name="duels">Duels</string>
+    <string name="rewards">Rewards</string>
+    <string name="earned_rewards">You’ve earned 4/10 of all Rewards.</string>
+
+
+    <string name="profile_image_desc">User profile picture</string>
+
+
+    <string name="calories_value">246</string>
+    <string name="followers_value">682</string>
+
+    <string name="edit_photo">Edit photo</string>
+
+    <string name="close_friend_switch">Close friend switch</string>
+    <string name="user_avatar">User avatar</string>
+    <string name="friend_name">Name</string>
+
+    <string name="avatar">User Avatar</string>
+    <string name="edit_profile_arrow">Go to profile editing</string>
+    <string name="more">more</string>
+
+</resources>

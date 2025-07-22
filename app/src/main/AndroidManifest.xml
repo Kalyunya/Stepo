@@ -1,0 +1,68 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.fitstepo">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="fitstepo"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Fitstepo"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <!-- Додай цей рядок -->
+        <activity android:name=".RegisterActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".WelcomeActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".GenderSelectionActivity" />
+        <activity android:name=".Frame4Activity" />
+        <activity android:name=".Frame5Activity" />
+        <activity android:name=".TimePickerActivity" />
+        <activity android:name=".OldPickerActivity" />
+        <activity android:name=".WeightPickerActivity" />
+        <activity android:name=".HeightPickerActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".Frame18Activity" />
+        <activity android:name=".Frame19Activity" />
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".NotificationsActivity" />
+        <activity android:name=".CloseFriendsActivity" />
+        <activity android:name=".SoundsActivity" />
+        <activity android:name=".TrainingStatisticsActivity" />
+        <activity android:name=".DailyOverviewActivity" />
+        <activity android:name=".WorkoutScheduleActivity" />
+
+        <activity android:name=".TestDataActivity" />
+        <activity android:name=".EspDataActivity" />
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <service android:name=".PulseService" android:exported="false"/>
+
+        <!-- Залиш головну активність (не чіпай MainActivity) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDAnUZhawRQ4th9T0ir1jE-U2QwTSCY6D0" />
+    </application>
+
+</manifest>

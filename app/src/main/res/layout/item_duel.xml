@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/bg_item_timeline"
+    android:layout_marginBottom="12dp">
+
+    <!-- Верхній рядок: Аватарки та заголовок -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
+
+        <!-- 👇 ВСТАВ СЮДИ ОНОВЛЕНИЙ КОД ЗАМІСТЬ avatarLeft -->
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_avatar_circle"
+            android:clipToOutline="true">
+
+            <ImageView
+                android:id="@+id/avatarLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="Avatar left" />
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/duelTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="You vs Alex"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/avatarRight"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/avatar2"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_icon_circle"
+            android:contentDescription="Avatar right" />
+    </LinearLayout>
+
+    <!-- Дата -->
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today, 14 June"
+        android:textColor="#888888"
+        android:textSize="14sp"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Блок: іконка і рахунок -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_bike"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="Icon" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2246 vs. 6468"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+    </LinearLayout>
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:progress="30"
+        android:max="100"
+        android:progressTint="#0000FF"
+        android:backgroundTint="#000000"
+        android:layout_marginTop="8dp"/>
+</LinearLayout>
