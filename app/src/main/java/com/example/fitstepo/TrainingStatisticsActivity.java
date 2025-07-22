@@ -2,6 +2,7 @@ package com.example.fitstepo;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -26,7 +27,6 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
     private TextView stepsText;
     private TextView distanceText;
     private TextView caloriesText;
-
     private TextView rope;
     private TextView treadmill;
     private TextView barbell;
@@ -34,123 +34,80 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
 
     private StepTracker stepTracker;
     private Handler handler = new Handler();
-
     private DashboardFragment currentDashboardFragment = null;
-
     private MainProgressBarsManager progressManager;
 
-    // 👇 ДОДАНО: змінні для профілю
     private ImageView profileImage;
     private TextView helloText;
     private String loggedUserEmail;
     private String loggedUserFullName;
     private String avatar;
 
+    private static final String PREFS_NAME = "ExercisePrefs"; // ДОДАНО
+
     private final Runnable updateRunnable = new Runnable() {
         @Override
         public void run() {
             int steps = stepTracker.getCurrentStepCount();
             float distance = stepTracker.getDistanceKm();
-            float calories = stepTracker.getCaloriesBurned();
+            float baseCalories = stepTracker.getCaloriesBurned();
             float points = stepTracker.getPoints();
 
+            // ДОДАНО: зчитування збережених вправ
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+            float ropeVal = prefs.getFloat("Rope", 0f);
+            float treadmillVal = prefs.getFloat("Treadmill", 0f);
+            float dumbbellVal = prefs.getFloat("Dumbbell", 0f);
+
+            float totalCalories = baseCalories
+                    + (ropeVal * 0.17f)
+                    + (treadmillVal * 0.035f)
+                    + (dumbbellVal * 0.4f);
+
+            // Вивід
             stepsText.setText(" " + steps);
-            pointsText.setText(String.format("%.1f", points));
             distanceText.setText(String.format("%.2f km", distance));
-            caloriesText.setText(String.format("%.0f kcal", calories));
+            caloriesText.setText(String.format("%.0f kcal", totalCalories));
+            pointsText.setText(String.format("%.1f", points));
 
             double ropeValue = distance / 0.00135;
             double treadmillValue = distance * 4000;
             double barbellValue = distance / 0.003;
 
-            rope.setText(String.format("%.0f", ropeValue));
-            treadmill.setText(String.format("%.0f", treadmillValue));
-            barbell.setText(String.format("%.0f", barbellValue));
+            rope.setText(String.format("%.0f", ropeVal));
+            treadmill.setText(String.format("%.0f", treadmillVal));
+            barbell.setText(String.format("%.0f", dumbbellVal));
 
             if (currentDashboardFragment != null) {
                 currentDashboardFragment.updateProgressBar(25);
                 currentDashboardFragment.updatePtsText((int) points);
             }
+
             handler.postDelayed(this, 1000);
         }
     };
-//        public void run() {
-//            int steps = stepTracker.getCurrentStepCount();
-//            float distance = stepTracker.getDistanceKm();
-//            float calories = stepTracker.getCaloriesBurned();
-//            float points = stepTracker.getPoints();
-//
-//            stepsText.setText(" " + steps);
-//            pointsText.setText(String.format("%.1f", points));
-//            distanceText.setText(String.format("%.2f km", distance));
-//            caloriesText.setText(String.format("%.0f kcal", calories));
-//
-//            double ropeValue = distance / 0.00135;
-//            double treadmillValue = distance * 4000;
-//            double barbellValue = distance / 0.003;
-//
-//            rope.setText(String.format("%.0f", ropeValue));
-//            treadmill.setText(String.format("%.0f", treadmillValue));
-//            barbell.setText(String.format("%.0f", barbellValue));
-//
-//
-//
-//            int distanceProgress = (int) ((distance / 5f) * 100);
-//            int stepsProgress = (int) ((steps / 10000f) * 100);
-//            int pointsProgress = (int) ((points / 10000f) * 100);
-//
-//
-//            distanceProgress = Math.min(distanceProgress, 100);
-//            stepsProgress = Math.min(stepsProgress, 100);
-//            pointsProgress = Math.min(pointsProgress, 100);
-//
-//            progressManager.setProgress(0, distanceProgress, 100);
-//            progressManager.setProgress(1, stepsProgress, 100);
-//            progressManager.setProgress(2, pointsProgress, 100);
-//
-//            if (currentDashboardFragment != null) {
-//                currentDashboardFragment.updateProgressBar(25);
-//                currentDashboardFragment.updatePtsText((int) points);
-//            }
-//
-//            handler.postDelayed(this, 1000);
-//        }
-//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_statistics);
 
-        // 👇 ДОДАНО: зчитування з Intent
         Intent intent = getIntent();
         loggedUserEmail = intent.getStringExtra(Constants.EXTRA_EMAIL);
         loggedUserFullName = intent.getStringExtra(Constants.EXTRA_FULL_NAME);
         avatar = intent.getStringExtra(Constants.EXTRA_AVATAR);
 
-        // 👇 ДОДАНО: знаходимо в макеті
         profileImage = findViewById(R.id.profileImage);
         helloText = findViewById(R.id.helloText);
 
-//        // 👇 ДОДАНО: аватар
-//        if (avatar != null && avatar.startsWith("content://")) {
-//            profileImage.setImageURI(Uri.parse(avatar));
-//        } else {
-//            profileImage.setImageResource(R.drawable.default_avatar);
-//        }
-
-        // ✅ ВСТАНОВЛЕННЯ АВАТАРА ЧЕРЕЗ AvatarUtils
         if (loggedUserEmail != null) {
             AvatarUtils.loadUserAvatar(this, loggedUserEmail, profileImage);
         }
 
-
-        // 👇 ДОДАНО: ім’я
         if (helloText != null && loggedUserFullName != null) {
             helloText.setText("Hello " + loggedUserFullName + "!");
         }
 
-        // 👇 ДОДАНО: перехід на профіль
         profileImage.setOnClickListener(v -> {
             Intent profileIntent = new Intent(TrainingStatisticsActivity.this, ProfileActivity.class);
             profileIntent.putExtra(Constants.EXTRA_EMAIL, loggedUserEmail);
@@ -169,8 +126,7 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
         float scale = getResources().getDisplayMetrics().density;
         int maxHeightPx = (int) (maxHeightDp * scale + 0.5f);
 
-//        progressManager = new MainProgressBarsManager(fill0, fill1, fill2, maxHeightPx);
-        MainProgressBarsManager progressManager = new MainProgressBarsManager(fill0, fill1, fill2, maxHeightPx);
+        progressManager = new MainProgressBarsManager(fill0, fill1, fill2, maxHeightPx);
         progressManager.setProgress(0, 70, 100);
         progressManager.setProgress(1, 40, 100);
         progressManager.setProgress(2, 75, 100);
@@ -189,6 +145,36 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
         TextView dateText = findViewById(R.id.dateText);
         dateText.setText(DateHelper.getFormattedDate());
 
+        // ДОДАНО: обробка intent після виконання вправи
+        if (intent != null && intent.hasExtra("exerciseName") && intent.hasExtra("exerciseTime")) {
+            String exerciseName = intent.getStringExtra("exerciseName");
+            long exerciseTimeMs = intent.getLongExtra("exerciseTime", 0);
+            double exerciseTimeSeconds = exerciseTimeMs / 1000.0;
+
+            double value = 0;
+
+            switch (exerciseName) {
+                case "Rope":
+                    value = exerciseTimeSeconds * (88.0 / 50.0);
+                    rope.setText(String.format("%.0f", value));
+                    saveExerciseValue("Rope", (float) value);
+                    break;
+                case "Treadmill":
+                    value = (exerciseTimeSeconds / 60.0) * 100;
+                    treadmill.setText(String.format("%.0f", value));
+                    saveExerciseValue("Treadmill", (float) value);
+                    break;
+                case "Dumbbell":
+                    value = exerciseTimeSeconds / 2.5;
+                    barbell.setText(String.format("%.0f", value));
+                    saveExerciseValue("Dumbbell", (float) value);
+                    break;
+            }
+
+            getIntent().removeExtra("exerciseName");
+            getIntent().removeExtra("exerciseTime");
+        }
+
         calendarButton.setOnClickListener(v -> {
             Intent intent1 = new Intent(TrainingStatisticsActivity.this, WorkoutScheduleActivity.class);
             intent1.putExtra(Constants.EXTRA_EMAIL, loggedUserEmail);
@@ -198,7 +184,6 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
             }
             startActivity(intent1);
         });
-
 
         barbell.setOnClickListener(v -> {
             Intent intent1 = new Intent(TrainingStatisticsActivity.this, WorkoutScheduleActivity.class);
@@ -210,7 +195,6 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
 
             if (itemId == R.id.nav_medal) {
                 currentDashboardFragment = new DashboardFragment();
-
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.EXTRA_EMAIL, loggedUserEmail);
                 bundle.putString(Constants.EXTRA_FULL_NAME, loggedUserFullName);
@@ -218,12 +202,10 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
                     bundle.putString(Constants.EXTRA_AVATAR, avatar);
                 }
                 currentDashboardFragment.setArguments(bundle);
-
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, currentDashboardFragment)
                         .commit();
                 return true;
-
             } else if (itemId == R.id.nav_home) {
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
                 if (fragment != null) {
@@ -233,10 +215,8 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
                 }
                 currentDashboardFragment = null;
                 return true;
-
             } else if (itemId == R.id.nav_heart) {
                 DailyOverviewFragment overviewFragment = new DailyOverviewFragment();
-
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.EXTRA_EMAIL, loggedUserEmail);
                 bundle.putString(Constants.EXTRA_FULL_NAME, loggedUserFullName);
@@ -244,13 +224,11 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
                     bundle.putString(Constants.EXTRA_AVATAR, avatar);
                 }
                 overviewFragment.setArguments(bundle);
-
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, overviewFragment)
                         .commit();
                 currentDashboardFragment = null;
                 return true;
-
             } else if (itemId == R.id.nav_stats) {
                 Intent statsIntent = new Intent(TrainingStatisticsActivity.this, Frame18Activity.class);
                 statsIntent.putExtra(Constants.EXTRA_EMAIL, loggedUserEmail);
@@ -260,11 +238,19 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
                 }
                 startActivity(statsIntent);
                 return true;
+            } else if (itemId == R.id.nav_play) {
+                Intent playIntent = new Intent(TrainingStatisticsActivity.this, ExerciseActivity.class);
+                playIntent.putExtra(Constants.EXTRA_EMAIL, loggedUserEmail);
+                playIntent.putExtra(Constants.EXTRA_FULL_NAME, loggedUserFullName);
+                if (avatar != null) {
+                    playIntent.putExtra(Constants.EXTRA_AVATAR, avatar);
+                }
+                startActivity(playIntent);
+                return true;
             }
 
             return false;
         });
-
 
         float heightCm = 175f;
         float weightKg = 70f;
@@ -279,8 +265,11 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
         startService(new Intent(this, PulseService.class));
     }
 
-    public StepTracker getStepTracker() {
-        return stepTracker;
+    private void saveExerciseValue(String name, float value) {
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                .edit()
+                .putFloat(name, value)
+                .apply();
     }
 
     private void checkAndRequestActivityRecognitionPermission() {
@@ -298,5 +287,9 @@ public class TrainingStatisticsActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    public StepTracker getStepTracker() {
+        return stepTracker;
     }
 }

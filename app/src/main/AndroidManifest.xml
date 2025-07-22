@@ -36,6 +36,7 @@
         <activity android:name=".TrainingStatisticsActivity" />
         <activity android:name=".DailyOverviewActivity" />
         <activity android:name=".WorkoutScheduleActivity" />
+        <activity android:name=".ExerciseActivity" />
 
         <activity android:name=".TestDataActivity" />
         <activity android:name=".EspDataActivity" />
