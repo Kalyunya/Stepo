@@ -1,4 +1,5 @@
 package com.example.fitstepo
+import com.example.fitstepo.DuelItem
 
 import android.view.LayoutInflater
 import android.view.View
@@ -31,9 +32,14 @@ class DuelAdapter(private val items: List<DuelItem>) :
         holder.date.text = "Today, 14 June"
         holder.score.text = "${item.score1} vs ${item.score2}"
         holder.icon.setImageResource(item.iconResId)
-        holder.avatar1.setImageResource(item.avatar1)
+
+        // ← Завантажуємо аватар по email через AvatarUtils
+        AvatarUtils.loadUserAvatar(holder.itemView.context, item.userEmail, holder.avatar1)
+
+        // ← Статичний аватар
         holder.avatar2.setImageResource(item.avatar2)
     }
 
     override fun getItemCount() = items.size
 }
+

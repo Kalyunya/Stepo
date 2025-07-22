@@ -9,5 +9,6 @@ data class User(
     val weight: Int,
     val gender: String,
     val goals: String,
-    val time: String
+    val time: String,
+    val avatar: String?
 )

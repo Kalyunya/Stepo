@@ -34,13 +34,18 @@ class SoundsActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private var isPlaying = false
 
+    private var email: String? = null // ← ДОДАНО
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sounds)
 
+        email = intent.getStringExtra(Constants.EXTRA_EMAIL)
+
         // Назад
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
+            intent.putExtra(Constants.EXTRA_EMAIL, email)
             onBackPressedDispatcher.onBackPressed()
         }
 

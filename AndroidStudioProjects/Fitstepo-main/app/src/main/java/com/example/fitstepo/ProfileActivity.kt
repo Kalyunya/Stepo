@@ -3,11 +3,9 @@ package com.example.fitstepo
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -24,25 +22,59 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var timelineRecycler: RecyclerView
     private lateinit var duelsRecycler: RecyclerView
 
-    private lateinit var tvName: TextView // ← додали змінну
+    private lateinit var tvName: TextView
+    private lateinit var imgAvatar: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        // Отримання email з інтенту
-        val email = intent.getStringExtra("email")
+        tvName = findViewById(R.id.tvName)
+        imgAvatar = findViewById(R.id.profileImage)
 
-        // Отримання користувача з бази
+        // Отримання параметрів з Intent
+        val email = intent.getStringExtra(Constants.EXTRA_EMAIL)
+        val fullNameFromIntent = intent.getStringExtra(Constants.EXTRA_FULL_NAME)
+        val avatarFromIntent = intent.getStringExtra(Constants.EXTRA_AVATAR)
+
         val dbHelper = DBHelper(this)
         val user = email?.let { dbHelper.getUserByEmail(it) }
 
-        // Встановлення імені користувача
-        tvName = findViewById(R.id.tvName)
-        user?.let {
-            tvName.text = it.fullName
+        // Встановлення аватара
+        if (!avatarFromIntent.isNullOrEmpty()) {
+            AvatarUtils.setAvatarFromUri(this, imgAvatar, avatarFromIntent)
+        } else if (user != null && !user.avatar.isNullOrEmpty()) {
+            AvatarUtils.setAvatarFromUri(this, imgAvatar, user.avatar)
+        } else {
+            imgAvatar.setImageResource(R.drawable.profile_placeholder)
         }
 
+        // Встановлення імені
+        tvName.text = fullNameFromIntent ?: user?.fullName ?: "User"
+
+        // Кнопка закриття (назад)
+        val btnClose = findViewById<ImageButton>(R.id.btnClose)
+        btnClose.setOnClickListener {
+            val intent = Intent(this, TrainingStatisticsActivity::class.java)
+            intent.putExtra(Constants.EXTRA_EMAIL, email)
+            intent.putExtra(Constants.EXTRA_FULL_NAME, user?.fullName ?: fullNameFromIntent)
+            intent.putExtra(Constants.EXTRA_AVATAR, user?.avatar ?: avatarFromIntent)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            finish()
+        }
+
+        // Кнопка налаштувань
+        val btnSettings = findViewById<ImageButton>(R.id.btnSettings)
+        btnSettings.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            intent.putExtra(Constants.EXTRA_EMAIL, email)
+            intent.putExtra(Constants.EXTRA_FULL_NAME, user?.fullName ?: fullNameFromIntent)
+            intent.putExtra(Constants.EXTRA_AVATAR, user?.avatar ?: avatarFromIntent)
+            startActivity(intent)
+        }
+
+        // Кнопки секцій
         btnTimeline = findViewById(R.id.btnTimeline)
         btnStats = findViewById(R.id.btnStats)
         btnDuels = findViewById(R.id.btnDuels)
@@ -50,12 +82,6 @@ class ProfileActivity : AppCompatActivity() {
         layoutTimeline = findViewById(R.id.layoutTimeline)
         layoutStats = findViewById(R.id.layoutStats)
         layoutDuels = findViewById(R.id.layoutDuels)
-
-        val btnSettings = findViewById<ImageButton>(R.id.btnSettings)
-        btnSettings.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
 
         timelineRecycler = findViewById(R.id.recyclerTimeline)
         timelineRecycler.layoutManager = LinearLayoutManager(this)
@@ -70,10 +96,18 @@ class ProfileActivity : AppCompatActivity() {
         duelsRecycler.layoutManager = LinearLayoutManager(this)
         duelsRecycler.adapter = DuelAdapter(
             listOf(
-                DuelItem("You vs Alex", "3 workouts", "2246", "6468", R.drawable.ic_cycle,
-                    R.drawable.avatar1, R.drawable.avatar2)
+                DuelItem(
+                    title = "You vs Alex",
+                    subtitle = "3 workouts",
+                    score1 = "2246",
+                    score2 = "6468",
+                    iconResId = R.drawable.ic_cycle,
+                    userEmail = email ?: "", // ← Передаємо email
+                    avatar2 = R.drawable.avatar2
+                )
             )
         )
+
 
         btnTimeline.setOnClickListener {
             showSection(layoutTimeline)
@@ -90,6 +124,7 @@ class ProfileActivity : AppCompatActivity() {
             highlightButton(btnDuels)
         }
 
+        // За замовчуванням — Stats
         showSection(layoutStats)
         highlightButton(btnStats)
     }
@@ -105,11 +140,11 @@ class ProfileActivity : AppCompatActivity() {
         val buttons = listOf(btnTimeline, btnStats, btnDuels)
         buttons.forEach {
             if (it == activeButton) {
-                it.setBackgroundColor(resources.getColor(android.R.color.black))
-                it.setTextColor(resources.getColor(android.R.color.white))
+                it.setBackgroundColor(ContextCompat.getColor(this, android.R.color.black))
+                it.setTextColor(ContextCompat.getColor(this, android.R.color.white))
             } else {
-                it.setBackgroundColor(resources.getColor(android.R.color.transparent))
-                it.setTextColor(resources.getColor(android.R.color.black))
+                it.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent))
+                it.setTextColor(ContextCompat.getColor(this, android.R.color.black))
             }
         }
     }

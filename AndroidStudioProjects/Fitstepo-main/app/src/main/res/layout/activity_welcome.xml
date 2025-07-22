@@ -46,19 +46,6 @@
             android:text="Register"
             android:layout_marginTop="16dp" />
 
-        <Button
-            android:id="@+id/btnGoToMap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Go to Map"
-            android:layout_marginTop="16dp" />
-
-        <Button
-            android:id="@+id/btnEditProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/edit_profile"
-            android:layout_marginTop="16dp" />
     </LinearLayout>
 
     <!-- Зображення пари -->

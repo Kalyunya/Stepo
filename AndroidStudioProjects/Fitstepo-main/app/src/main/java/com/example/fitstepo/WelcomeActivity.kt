@@ -12,8 +12,8 @@ class WelcomeActivity : AppCompatActivity() {
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
-        val btnGoToMap = findViewById<Button>(R.id.btnGoToMap)
-        val btnEdit = findViewById<Button>(R.id.btnEditProfile)
+//        val btnGoToMap = findViewById<Button>(R.id.btnGoToMap)
+//        val btnEdit = findViewById<Button>(R.id.btnEditProfile)
 
         btnLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -21,13 +21,6 @@ class WelcomeActivity : AppCompatActivity() {
 
         btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-        }
-
-        btnGoToMap.setOnClickListener {
-            startActivity(Intent(this, Frame18Activity::class.java))
-        }
-        btnEdit.setOnClickListener {
-            startActivity(Intent(this, EditProfileActivity::class.java))
         }
     }
 }

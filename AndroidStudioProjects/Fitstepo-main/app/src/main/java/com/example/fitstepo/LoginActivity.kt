@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
+import com.example.fitstepo.EspSender
 
 class LoginActivity : AppCompatActivity() {
 
@@ -40,9 +41,14 @@ class LoginActivity : AppCompatActivity() {
 
             if (cursor.moveToFirst()) {
                 val fullName = cursor.getString(cursor.getColumnIndexOrThrow("fullName"))
-                val intent = Intent(this, ProfileActivity::class.java)
+                val avatar = cursor.getString(cursor.getColumnIndexOrThrow("avatar")) // ← нове
+
+                EspSender.sendFullNameToEsp(fullName)
+
+                val intent = Intent(this, TrainingStatisticsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_EMAIL, email)
                 intent.putExtra(Constants.EXTRA_FULL_NAME, fullName)
+                intent.putExtra(Constants.EXTRA_AVATAR, avatar) // ← нове
                 startActivity(intent)
                 finish()
             } else {

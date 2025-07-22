@@ -35,8 +35,10 @@ class DBHelper(context: Context) :
                     weight REAL,
                     goals TEXT,
                     time TEXT,
-                    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    avatar TEXT
                 );
+                
                 """.trimIndent()
             )
         }
@@ -61,7 +63,8 @@ class DBHelper(context: Context) :
             val gender = cursor.getString(cursor.getColumnIndexOrThrow("gender"))
             val goals = cursor.getString(cursor.getColumnIndexOrThrow("goals"))
             val time = cursor.getString(cursor.getColumnIndexOrThrow("time"))
-            user = User(fullName, email, password, age, height, weight, gender, goals, time)
+            val avatar = cursor.getString(cursor.getColumnIndexOrThrow("avatar"))
+            user = User(fullName, email, password, age, height, weight, gender, goals, time, avatar )
         }
         cursor.close()
         return user

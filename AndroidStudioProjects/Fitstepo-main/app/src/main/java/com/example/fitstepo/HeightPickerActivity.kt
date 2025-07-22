@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fitstepo.EspSender
+
 
 class HeightPickerActivity : AppCompatActivity() {
 
@@ -86,6 +88,7 @@ class HeightPickerActivity : AppCompatActivity() {
                     put("height", selectedHeight)
                     put("goals", selectedGoals?.joinToString(", "))
                     put("time", selectedTime)
+                    put("avatar", "default_avatar")
                 }
 
                 try {
@@ -98,7 +101,11 @@ class HeightPickerActivity : AppCompatActivity() {
 
                     if (rows > 0) {
                         Toast.makeText(this, "Дані збережено", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, ProfileActivity::class.java)
+
+                        // 🔽 Додано: Надсилаємо ім’я користувача на ESP32
+                        EspSender.sendFullNameToEsp(fullName!!)
+
+                        val intent = Intent(this, TrainingStatisticsActivity::class.java)
                         intent.putExtra(Constants.EXTRA_EMAIL, email)
                         intent.putExtra(Constants.EXTRA_FULL_NAME, fullName)
                         startActivity(intent)

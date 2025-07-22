@@ -16,6 +16,8 @@
         android:layout_marginStart="19dp"
         android:layout_marginTop="42dp"
         android:src="@drawable/profile"
+        android:background="@drawable/circle_background"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,12 +36,11 @@
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friday, 4 July"
+        android:text=""
         android:textColor="#777"
         android:textSize="19sp"
         app:layout_constraintStart_toStartOf="@id/helloText"
         app:layout_constraintTop_toBottomOf="@id/helloText" />
-
     <ImageView
         android:id="@+id/calendarButton"
         android:layout_width="40dp"
@@ -59,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
-        android:text="1 883 Kcal"
+        android:text=""
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#000"
@@ -96,9 +97,10 @@
             android:orientation="vertical"
             android:gravity="center">
             <TextView
+                android:id="@+id/distanceText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="7580 M"
+                android:text=""
                 android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"
@@ -115,7 +117,8 @@
             android:orientation="vertical"
             android:gravity="center">
             <TextView
-                android:text="235"
+                android:id="@+id/stepsText"
+                android:text=""
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -134,7 +137,8 @@
             android:orientation="vertical"
             android:gravity="center">
             <TextView
-                android:text="1248"
+                android:id="@+id/pointsText"
+                android:text=""
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -156,34 +160,38 @@
         android:layout_marginRight="70dp"
         android:gravity="top"
         app:layout_constraintTop_toBottomOf="@id/Total">
+
+        <!-- Капсула 1 -->
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="146dp"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/progress_background"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_max"
                 android:scaleType="fitXY" />
 
             <ImageView
-                android:layout_gravity="bottom|center"
                 android:id="@+id/progress_fill"
+                android:layout_gravity="bottom|center"
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="70dp"
                 android:src="@drawable/ic_black_current"
                 android:scaleType="fitXY" />
         </FrameLayout>
+
+        <!-- Капсула 2 -->
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="146dp"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:id="@+id/progress_background1"
                 android:layout_gravity="center"
@@ -196,16 +204,18 @@
                 android:id="@+id/progress_fill1"
                 android:layout_gravity="bottom|center"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="0dp"
                 android:src="@drawable/ic_current"
                 android:scaleType="fitXY" />
         </FrameLayout>
+
+        <!-- Капсула 3 -->
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="146dp"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:id="@+id/progress_background2"
                 android:layout_gravity="center"
@@ -222,12 +232,14 @@
                 android:src="@drawable/ic_black_current"
                 android:scaleType="fitXY" />
         </FrameLayout>
+
+        <!-- Капсула 4 -->
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="146dp"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:id="@+id/progress_background3"
                 android:layout_gravity="center"
@@ -240,16 +252,18 @@
                 android:id="@+id/progress_fill3"
                 android:layout_gravity="bottom|center"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
+                android:layout_height="0dp"
                 android:src="@drawable/ic_current"
                 android:scaleType="fitXY" />
         </FrameLayout>
+
+        <!-- Капсула 5 -->
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="146dp"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:id="@+id/progress_background4"
                 android:layout_gravity="center"
@@ -262,16 +276,18 @@
                 android:id="@+id/progress_fill4"
                 android:layout_gravity="bottom|center"
                 android:layout_width="wrap_content"
-                android:layout_height="110dp"
+                android:layout_height="100dp"
                 android:src="@drawable/ic_black_current"
                 android:scaleType="fitXY" />
         </FrameLayout>
+
+        <!-- Капсула 6 -->
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="146dp"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:id="@+id/progress_background5"
                 android:layout_gravity="center"
@@ -284,12 +300,13 @@
                 android:id="@+id/progress_fill5"
                 android:layout_gravity="bottom|center"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="0dp"
                 android:src="@drawable/ic_current"
                 android:scaleType="fitXY" />
         </FrameLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/exercisesLayout"
         android:layout_width="match_parent"
@@ -311,6 +328,7 @@
                 android:layout_height="24dp"
                 android:src="@drawable/ic_dumbbell" />
             <TextView
+                android:id="@+id/barbell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="628 Kcal"
@@ -334,6 +352,7 @@
                 android:layout_height="24dp"
                 android:src="@drawable/ic_treadmill" />
             <TextView
+                android:id="@+id/treadmill"
                 android:text="235"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -357,6 +376,7 @@
                 android:layout_height="24dp"
                 android:src="@drawable/ic_rope" />
             <TextView
+                android:id="@+id/rope"
                 android:text="432"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -380,7 +400,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@id/exercisesLayout"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="19dp"/>
 
     <TextView
         android:id="@+id/planDate"
@@ -400,7 +420,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
-        android:layout_width="410dp"
+        android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"

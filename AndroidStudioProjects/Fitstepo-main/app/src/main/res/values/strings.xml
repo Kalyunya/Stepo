@@ -60,4 +60,8 @@
     <string name="user_avatar">User avatar</string>
     <string name="friend_name">Name</string>
 
+    <string name="avatar">User Avatar</string>
+    <string name="edit_profile_arrow">Go to profile editing</string>
+    <string name="more">more</string>
+
 </resources>

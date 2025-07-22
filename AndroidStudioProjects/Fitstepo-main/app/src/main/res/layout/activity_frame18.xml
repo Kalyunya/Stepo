@@ -8,111 +8,62 @@
     android:layout_height="match_parent"
     tools:context=".Frame18Activity">
 
-    <!-- Фон / карта -->
-    <FrameLayout
+    <!-- Карта Google -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-        <ImageView
-            android:id="@+id/imageMap"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:contentDescription="Map preview"
-            android:src="@android:drawable/ic_menu_mapmode" />
+    <!-- Кнопка 3D поверх карти -->
+    <Button
+        android:id="@+id/btn3D"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3D"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white" />
 
-        <!-- Кнопка 3D -->
-        <Button
-            android:id="@+id/btn3D"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3D"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp" />
-    </FrameLayout>
+    <!-- 🔁 КНОПКА НАЗАД -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_gravity="top|start"
+        android:background="@drawable/bg_icon_circle"
+        android:src="@drawable/ic_close"
+        android:contentDescription="Назад" />
 
     <!-- Висувна панель -->
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/bottomSheet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
         android:background="@android:color/white"
-        android:padding="16dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <!-- Ручка -->
-        <View
-            android:layout_width="40dp"
-            android:layout_height="4dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="12dp"
-            android:background="@android:color/darker_gray" />
-
-        <TextView
-            android:id="@+id/tvActivityName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Indoor Run"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/tvKcal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1 883 Kcal"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Графік (плейсхолдер) -->
-        <ImageView
-            android:id="@+id/imageGraph"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@android:drawable/ic_menu_info_details"
-            android:contentDescription="Graph"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Параметри -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⚡ 246 Energy"
-                android:layout_marginEnd="16dp"
-                android:textSize="16sp" />
+            <!-- Хендл -->
+            <View
+                android:layout_width="40dp"
+                android:layout_height="6dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bottom_sheet_handle" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🔥 682 Flame"
-                android:textSize="16sp" />
+            <!-- Вміст -->
+            <include layout="@layout/activity_training_statistics" />
+
         </LinearLayout>
-
-        <!-- Наступна активність -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next Round"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Outdoor Cycle (24 min)"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

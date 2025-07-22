@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:layout_marginStart="19dp"
-    android:layout_marginEnd="19dp">
+    android:layout_marginEnd="16dp">
     <ImageView
         android:id="@+id/profile_pic"
         android:layout_width="48dp"
@@ -22,31 +22,32 @@
         android:id="@+id/hello_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:text="Hello Inna!"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="@id/profile_pic"
         app:layout_constraintStart_toEndOf="@id/profile_pic"
-        android:layout_marginStart="12dp"/>
+        app:layout_constraintTop_toTopOf="@id/profile_pic" />
 
     <TextView
         android:id="@+id/date_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thursday, June 08"
-        android:textSize="23sp"
-        app:layout_constraintTop_toBottomOf="@id/hello_text"
-        app:layout_constraintStart_toStartOf="@id/hello_text"/>
+        android:text=""
+        android:textColor="#777"
+        android:textSize="19sp"
+        app:layout_constraintStart_toStartOf="@id/hello_text"
+        app:layout_constraintTop_toBottomOf="@id/hello_text" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/calendar_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/round_button"
         android:src="@drawable/ic_calendar"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/profile_pic"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="42dp"
+        android:padding="8dp"
         android:clickable="true"
         android:focusable="true"/>
 
@@ -68,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:text="June 2025"
+        android:text=""
         android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@id/today_info"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,12 +96,17 @@
             android:layout_marginStart="8dp">
 
             <TextView
-                android:layout_width="145dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:text="Calories"
                 android:textSize="14sp"
                 android:layout_marginTop="8dp"/>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
             <ImageView
+                android:layout_marginEnd="13dp"
                 android:layout_marginTop="9dp"
                 android:layout_width="15dp"
                 android:layout_height="20dp"
@@ -116,10 +122,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="40dp">
             <TextView
+                android:id="@+id/kcalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:text="620.68"
+                android:text=""
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>
@@ -152,12 +159,17 @@
             android:layout_marginStart="8dp">
 
             <TextView
-                android:layout_width="145dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:text="Heart"
                 android:textSize="14sp"
                 android:layout_marginTop="8dp"/>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
             <ImageView
+                android:layout_marginEnd="9dp"
                 android:layout_marginTop="9dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -186,10 +198,11 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="40dp">
             <TextView
+                android:id="@+id/heartRateText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:text="620.68"
+                android:text=""
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>
@@ -197,7 +210,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kcal"
+                android:text="Mbp"
                 android:textSize="12sp"/>
 
         </LinearLayout>
@@ -223,16 +236,20 @@
             android:layout_marginStart="8dp">
 
             <TextView
-                android:layout_width="145dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:text="Steps"
                 android:textSize="14sp"
                 android:layout_marginTop="8dp"/>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
             <ImageView
                 android:layout_marginTop="9dp"
+                android:layout_marginEnd="10dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/cup"
                 android:background="@drawable/ic_run_blue"
                 android:padding="8dp"/>
 
@@ -246,10 +263,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="40dp">
             <TextView
+                android:id="@+id/stepsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:text="1240"
+                android:text=""
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>

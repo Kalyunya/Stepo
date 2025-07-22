@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Переходимо на WelcomeActivity
         Intent intent = new Intent(MainActivity.this,
-                ProfileActivity.class);
+                WelcomeActivity.class);
         startActivity(intent);
         finish();
     }

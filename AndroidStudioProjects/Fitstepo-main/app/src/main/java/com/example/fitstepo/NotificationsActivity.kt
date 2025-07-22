@@ -9,19 +9,28 @@ import androidx.recyclerview.widget.RecyclerView
 
 class NotificationsActivity : AppCompatActivity() {
 
+    private var email: String? = null // ← ДОДАНО
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notifications)
 
+        // Зчитуємо email
+        email = intent.getStringExtra(Constants.EXTRA_EMAIL)
+
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         val recycler = findViewById<RecyclerView>(R.id.recyclerNotifications)
 
-        // Повернення на SettingsActivity
+        // КНОПКА НАЗАД → до SettingsActivity
         btnBack.setOnClickListener {
+//            Toast.makeText(this, "Назад натиснуто", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(this, SettingsActivity::class.java)
+            intent.putExtra(Constants.EXTRA_EMAIL, email)
             startActivity(intent)
             finish()
         }
+
 
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = NotificationAdapter(getFakeNotifications())
