@@ -23,9 +23,9 @@
     <!-- Заголовок -->
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="Данні з ESP32 (смарт годиник)"
+        android:text="Data from ESP32 (clock simulator)"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/black"
